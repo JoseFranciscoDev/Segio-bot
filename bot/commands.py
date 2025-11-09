@@ -1,8 +1,6 @@
 from datetime import datetime
 
-import telebot
-
-from bot_instance import bot
+from bot_instance import bot, telebot
 
 hora_atual = datetime.now()
 
