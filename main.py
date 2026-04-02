@@ -8,7 +8,6 @@ from bot.utils import is_valid_command
 from os import getenv
 import settings  # noqa
 
-
 client = GeminiClient(
     api_key=getenv("gemini_api_key"),
     instructions="Você é um chatbot que ajuda usuarios com questões do dia a dia, criado pelo José",
