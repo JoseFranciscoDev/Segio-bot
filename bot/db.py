@@ -1,7 +1,18 @@
+from sqlalchemy.orm.session import sessionmaker, Session
+from os import getenv
+from sqlalchemy import create_engine
+
+engine = create_engine(
+    getenv("DB_URL", ""),
+)
+
+Session = sessionmaker(engine)
+
 class Message:
     def __init__(self, role: str, text: str) -> None:
         self.role: str = role
         self.text: str | None = text
+
     def __str__(self) -> str:
         return f"role: {self.role} e de text: {self.text}"
 
@@ -16,6 +27,7 @@ def get_history(chat_id: int) -> list[Message]:
         bot_history_chats[chat_id] = []
     return bot_history_chats[chat_id]
 
-def add_message(chat_id: int, message: str | None, role: str) -> None:  
+
+def add_message(chat_id: int, message: str | None, role: str) -> None:
     history: list[Message] = get_history(chat_id)
     history.append(Message(role=role, text=str(message)))
